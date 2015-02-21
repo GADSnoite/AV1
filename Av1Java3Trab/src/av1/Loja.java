@@ -108,4 +108,33 @@ public class Loja {
 		return null;
 	}
 	
+	void listarEstoqueDeMotos(){//nome alterado para seguir camelcase
+		if(estoqueMotos.size() == 0){
+			System.out.println("Não há motos no estoque.");
+			
+		}else{
+			for(int i=0; i<estoqueMotos.size(); i++){
+				System.out.println("---------------------------------------");
+				System.out.println("Moto na posição "+i);
+				Motocicleta m = estoqueMotos.get(i);
+				System.out.println("Chassi "+m.getChassi());
+			}
+			System.out.println("---------------------------------------");
+		}
+	}
+	
+	void listarEstoqueDeCarros(){//nome alterado para seguir camelcase
+		if(estoqueCarros.size() == 0){
+			System.out.println("Não há Carros no estoque.");
+			
+		}else{
+			for(int i=0; i<estoqueCarros.size(); i++){
+				System.out.println("---------------------------------------");
+				System.out.println("Carro na posição "+i);
+				Carro c = estoqueCarros.get(i);
+				System.out.println("Chassi: "+c.getChassi());
+			}
+			System.out.println("---------------------------------------");
+		}
+	}
 }
