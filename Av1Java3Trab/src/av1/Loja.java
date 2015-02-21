@@ -6,7 +6,7 @@ import java.util.Scanner;
 
 public class Loja {
 	String endereco, nome;
-	ArrayList<Carro> estoqueCarros = new ArrayList<Carro>();//melhor do que array primitivo, n�o especifica tamanho
+	ArrayList<Carro> estoqueCarros = new ArrayList<Carro>();//melhor do que array primitivo, não especifica tamanho
 	ArrayList<Motocicleta> estoqueMotos = new ArrayList<Motocicleta>();
 	
 	void adicionarCarro(){
@@ -31,9 +31,9 @@ public class Loja {
 			System.out.println("Insira o cambio:");
 			nc.setCambio(sc.nextLine());
 			
-			System.out.println("Insira o pre�o:");
+			System.out.println("Insira o preço:");
 			nc.setPreco(sc.nextFloat());
-			System.out.println("Insira o motoriza��o:");
+			System.out.println("Insira o motorização:");
 			nc.setMotorizacao(sc.nextFloat());
 			
 		}catch(InputMismatchException e){
@@ -44,7 +44,7 @@ public class Loja {
 	}
 	
 	void adicionarMoto(){
-		/*cria a inst�ncia de moto
+		/*cria a instância de moto
 		 * recebe do usuario os valores a serem inseridos,
 		 * utiliza os setters
 		 * adiciona o objeto ao vetor
@@ -68,7 +68,7 @@ public class Loja {
 			System.out.println("Insira a capacidade do tanque:");
 			nm.setCapacidadeTanque(sc.nextInt());
 			
-			System.out.println("Insira o pre�o:");
+			System.out.println("Insira o preço:");
 			nm.setPreco(sc.nextFloat());
 		
 		}catch(InputMismatchException e){
@@ -76,6 +76,36 @@ public class Loja {
 			System.exit(1);
 		}
 		estoqueMotos.add(nm);
+	}
+
+	Carro pesquisarCarro(String c){
+		//como o código do chassi é unico, a pesquisa é feita com base nele
+		int i=0;
+		while(i<= estoqueCarros.size()){
+			String chassi = estoqueCarros.get(i).getChassi();
+			if(c.equals(chassi)){
+				System.out.println("Carro encontrado. Código do chassi: "+chassi);
+				return estoqueCarros.get(i);
+			}
+			i++;
+		}
+		System.out.println("Carro não encontrado.");
+		return null;
+	}
+	
+	Motocicleta pesquisarMoto(String m){
+		//como o código do chassi é unico, a pesquisa é feita com base nele
+		int i=0;
+		while(i<= estoqueMotos.size()){
+			String chassi = estoqueMotos.get(i).getChassi();
+			if(m.equals(chassi)){
+				System.out.println("Moto encontrada. Código do chassi: "+chassi);
+				return estoqueMotos.get(i);
+			}
+			i++;
+		}
+		System.out.println("Moto não encontrada.");
+		return null;
 	}
 	
 }
