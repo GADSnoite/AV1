@@ -137,4 +137,36 @@ public class Loja {
 			System.out.println("---------------------------------------");
 		}
 	}
+	void salvarEstoque(Loja lj){
+	      try{
+	         FileOutputStream arquivo =
+	         new FileOutputStream("estoque.ser");
+	         ObjectOutputStream out = new ObjectOutputStream(arquivo);
+	         out.writeObject(lj);
+	         out.close();
+	         arquivo.close();
+	         System.out.printf("Estoque foi salvo. [estoque.ser]");
+	      }catch(IOException i){
+	          i.printStackTrace();
+	      }
+	}
+
+	void recuperarEstoque(Loja lj){
+	      try{
+	         FileInputStream arquivo = new FileInputStream("estoque.ser");
+	         ObjectInputStream in = new ObjectInputStream(arquivo);
+	         lj = (Loja) in.readObject();
+	         in.close();
+	         arquivo.close();
+	      }catch(IOException i){
+	         i.printStackTrace();
+	         return;
+	      }catch(ClassNotFoundException c){
+	         System.out.println("Classe não encontrada");
+	         c.printStackTrace();
+	         return;
+	      }
+	      System.out.println("Estoque encontrado.");
+	      lj.listarEstoqueDeCarros();
+	}
 }
