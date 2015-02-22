@@ -3,8 +3,9 @@ package av1;
 import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.Scanner;
+import java.io.*;
 
-public class Loja {
+public class Loja implements java.io.Serializable{
 	String endereco, nome;
 	ArrayList<Carro> estoqueCarros = new ArrayList<Carro>();//melhor do que array primitivo, não especifica tamanho
 	ArrayList<Motocicleta> estoqueMotos = new ArrayList<Motocicleta>();
@@ -41,6 +42,8 @@ public class Loja {
 			System.exit(1);
 		}
 		estoqueCarros.add(nc);
+		System.out.println("Carro adicionado.");
+		System.out.println("---------------------------");
 	}
 	
 	void adicionarMoto(){
@@ -76,6 +79,8 @@ public class Loja {
 			System.exit(1);
 		}
 		estoqueMotos.add(nm);
+		System.out.println("Moto adicionada.");
+		System.out.println("---------------------------");
 	}
 
 	Carro pesquisarCarro(String c){
@@ -85,11 +90,13 @@ public class Loja {
 			String chassi = estoqueCarros.get(i).getChassi();
 			if(c.equals(chassi)){
 				System.out.println("Carro encontrado. Código do chassi: "+chassi);
+				System.out.println("---------------------------");
 				return estoqueCarros.get(i);
 			}
 			i++;
 		}
 		System.out.println("Carro não encontrado.");
+		System.out.println("---------------------------");
 		return null;
 	}
 	
@@ -100,19 +107,22 @@ public class Loja {
 			String chassi = estoqueMotos.get(i).getChassi();
 			if(m.equals(chassi)){
 				System.out.println("Moto encontrada. Código do chassi: "+chassi);
+				System.out.println("---------------------------");
 				return estoqueMotos.get(i);
 			}
 			i++;
 		}
 		System.out.println("Moto não encontrada.");
+		System.out.println("---------------------------");
 		return null;
 	}
-	
+
 	void listarEstoqueDeMotos(){//nome alterado para seguir camelcase
 		if(estoqueMotos.size() == 0){
 			System.out.println("Não há motos no estoque.");
-			
+			System.out.println("---------------------------------------");
 		}else{
+			System.out.println(estoqueMotos.size()+" Motos em estoque.");
 			for(int i=0; i<estoqueMotos.size(); i++){
 				System.out.println("---------------------------------------");
 				System.out.println("Moto na posição "+i);
@@ -126,8 +136,9 @@ public class Loja {
 	void listarEstoqueDeCarros(){//nome alterado para seguir camelcase
 		if(estoqueCarros.size() == 0){
 			System.out.println("Não há Carros no estoque.");
-			
+			System.out.println("---------------------------------------");
 		}else{
+			System.out.println(estoqueCarros.size()+" Carros em estoque.");
 			for(int i=0; i<estoqueCarros.size(); i++){
 				System.out.println("---------------------------------------");
 				System.out.println("Carro na posição "+i);
@@ -137,6 +148,7 @@ public class Loja {
 			System.out.println("---------------------------------------");
 		}
 	}
+	
 	void salvarEstoque(Loja lj){
 	      try{
 	         FileOutputStream arquivo =
@@ -146,8 +158,11 @@ public class Loja {
 	         out.close();
 	         arquivo.close();
 	         System.out.printf("Estoque foi salvo. [estoque.ser]");
+	         System.out.println("---------------------------");
 	      }catch(IOException i){
+	    	  System.out.println("Erro ao salvar estoque: ");
 	          i.printStackTrace();
+	          System.out.println("---------------------------");
 	      }
 	}
 
@@ -162,11 +177,14 @@ public class Loja {
 	         i.printStackTrace();
 	         return;
 	      }catch(ClassNotFoundException c){
-	         System.out.println("Classe não encontrada");
+	         System.out.println("Classe não encontrada.");
+	         System.out.println("---------------------------");
 	         c.printStackTrace();
 	         return;
 	      }
 	      System.out.println("Estoque encontrado.");
+	      System.out.println("---------------------------");
 	      lj.listarEstoqueDeCarros();
 	}
+	
 }
