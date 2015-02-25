@@ -1,6 +1,10 @@
 package av1;
 
 public class Carro extends Veiculo{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private String cambio;
 	private float motorizacao;
 	
@@ -17,4 +21,13 @@ public class Carro extends Veiculo{
 		this.motorizacao = motorizacao;
 	}
 	
+	
+	@Override
+	public String toString() {
+		return 	"Montadora: " + montadora + 
+				"\nModelo: " + modelo + 
+				"\nTipo: " + tipo + 
+				"\nCor: " + cor +
+				"\n\r";
+	}
 }

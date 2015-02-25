@@ -1,8 +1,14 @@
 package av1;
 
-public class Veiculo implements java.io.Serializable{
-	private String chassi, montadora, modelo, tipo, cor;
-	private float preco;
+import java.io.Serializable;
+
+public class Veiculo implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	protected String chassi, montadora, modelo, tipo, cor;
+	protected float preco;
 	
 	public String getChassi() {
 		return chassi;

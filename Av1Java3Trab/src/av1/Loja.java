@@ -5,7 +5,12 @@ import java.util.InputMismatchException;
 import java.util.Scanner;
 import java.io.*;
 
-public class Loja implements java.io.Serializable{
+@SuppressWarnings("resource")
+public class Loja implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	String endereco, nome;
 	ArrayList<Carro> estoqueCarros = new ArrayList<Carro>();//melhor do que array primitivo, não especifica tamanho
 	ArrayList<Motocicleta> estoqueMotos = new ArrayList<Motocicleta>();
@@ -16,7 +21,7 @@ public class Loja implements java.io.Serializable{
 		 * e utiliza os setters
 		 * adiciona o objeto ao vetor
 		 */
-		Carro nc = new Carro();
+		Carro nc = new Carro();		
 		Scanner sc = new Scanner(System.in);
 		try{
 			System.out.println("Insira o chassi:");
@@ -83,38 +88,43 @@ public class Loja implements java.io.Serializable{
 		System.out.println("---------------------------");
 	}
 
-	Carro pesquisarCarro(String c){
+	void pesquisarCarro(){
 		//como o código do chassi é unico, a pesquisa é feita com base nele
+		System.out.println("Insira um chassi válido:");
+		Scanner sc = new Scanner(System.in);
+		String c = sc.nextLine();
 		int i=0;
-		while(i<= estoqueCarros.size()){
+		while(i < estoqueCarros.size()){
 			String chassi = estoqueCarros.get(i).getChassi();
 			if(c.equals(chassi)){
 				System.out.println("Carro encontrado. Código do chassi: "+chassi);
 				System.out.println("---------------------------");
-				return estoqueCarros.get(i);
+				System.out.println(estoqueCarros.get(i).toString());
+			} else {
+				System.out.println("Carro não encontrado.");
+				System.out.println("---------------------------");
 			}
 			i++;
-		}
-		System.out.println("Carro não encontrado.");
-		System.out.println("---------------------------");
-		return null;
+		}		
 	}
 	
-	Motocicleta pesquisarMoto(String m){
+	void pesquisarMoto(){
 		//como o código do chassi é unico, a pesquisa é feita com base nele
+		System.out.println("Insira um chassi válido:");
+		Scanner sc = new Scanner(System.in);
+		String m = sc.nextLine();
 		int i=0;
 		while(i<= estoqueMotos.size()){
 			String chassi = estoqueMotos.get(i).getChassi();
 			if(m.equals(chassi)){
 				System.out.println("Moto encontrada. Código do chassi: "+chassi);
 				System.out.println("---------------------------");
-				return estoqueMotos.get(i);
+				estoqueMotos.get(i);
 			}
 			i++;
 		}
 		System.out.println("Moto não encontrada.");
 		System.out.println("---------------------------");
-		return null;
 	}
 
 	void listarEstoqueDeMotos(){//nome alterado para seguir camelcase

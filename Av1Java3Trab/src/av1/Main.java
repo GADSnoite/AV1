@@ -5,13 +5,14 @@ import java.util.Scanner;
 
 public class Main {
 
+	@SuppressWarnings("resource")
 	public static void main(String[] args) {
-		int opcao = -1;
-		String chassi = null;
+		Integer opcao = -1;
 		Scanner sc = new Scanner(System.in);
 		Loja lj = new Loja();
 		do{
-			System.out.println("Escolha uma opÁ„o:");
+			
+			System.out.println("Escolha uma op√ß√£o:");
 			System.out.println("[0]- FIM");
 			System.out.println("[1]- adicionar Carro");
 			System.out.println("[2]- adicionar Moto");
@@ -21,12 +22,13 @@ public class Main {
 			System.out.println("[6]- listar estoque de Motos");
 			System.out.println("[7]- salvar estoque em arquivo");
 			System.out.println("[8]- recuperar estoque de arquivo");
-			try{
+			
+			try {
 				opcao = sc.nextInt();
-			}catch(InputMismatchException e){
-				System.out.println("ERRO- Tipo incorreto: "+e);
-				System.exit(1);
+			} catch (InputMismatchException e) {
+				throw new RuntimeException("Tipo inserido inv√°lido!!!!");
 			}
+			
 			switch(opcao){
 				case 0:
 					break;
@@ -37,24 +39,10 @@ public class Main {
 					lj.adicionarMoto();
 					break;
 				case 3:
-					System.out.println("Insira um chassi v·lido:");
-					try{
-						chassi = sc.nextLine();
-					}catch(InputMismatchException e){
-						System.out.println("ERRO- Tipo incorreto: "+e);
-						break;
-					}
-					lj.pesquisarCarro(chassi);
+					lj.pesquisarCarro();
 					break;
 				case 4:
-					System.out.println("Insira um chassi v·lido:");
-					try{
-						chassi = sc.nextLine();
-					}catch(InputMismatchException e){
-						System.out.println("ERRO- Tipo incorreto: "+e);
-						break;
-					}
-					lj.pesquisarMoto(chassi);
+					lj.pesquisarMoto();
 					break;
 				case 5:
 					lj.listarEstoqueDeCarros();
@@ -69,10 +57,14 @@ public class Main {
 					lj.recuperarEstoque(lj);
 					break;
 				default:
-					System.out.println("OpÁ„o inv·lida.");
+					System.out.println("Op√ß√£o inv√°lida.");
 					break;
 			}
+			
 		}while(opcao != 0);
+		
+		sc.close();
+		
 	}
 
 }
