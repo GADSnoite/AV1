@@ -1,6 +1,6 @@
 package av1;
 
-public class Veiculo {
+public class Veiculo implements java.io.Serializable{
 	private String chassi, montadora, modelo, tipo, cor;
 	private float preco;
 	
