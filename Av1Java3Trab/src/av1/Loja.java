@@ -1,9 +1,19 @@
 package av1;
 
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.InputMismatchException;
+import java.util.Map;
 import java.util.Scanner;
-import java.io.*;
+
+import enums.ModeloCarro;
+import enums.MontadoraDeCarro;
 
 @SuppressWarnings("resource")
 public class Loja implements Serializable{
@@ -21,16 +31,26 @@ public class Loja implements Serializable{
 		 * e utiliza os setters
 		 * adiciona o objeto ao vetor
 		 */
-		Carro nc = new Carro();		
+		Map<String, Object> veiculo = new HashMap<String, Object>();
+		Map<String, String> carro = new HashMap<String, String>();
 		Scanner sc = new Scanner(System.in);
 		try{
 			System.out.println("Insira o chassi:");
-			nc.setChassi(sc.nextLine());
+			carro.put("Chassi", sc.nextLine());
+			//teste
 			System.out.println("Insira a montadora:");
-			nc.setMontadora(sc.nextLine());
+			for (MontadoraDeCarro montadora : MontadoraDeCarro.values()) {
+				System.out.println(montadora.toString());
+			}
+			carro.put("Montadora", MontadoraDeCarro.values()[sc.nextInt()].toString());		
+			
 			System.out.println("Insira o modelo:");
-			nc.setModelo(sc.nextLine());
-			System.out.println("Insira o tipo de carro:");
+			for (ModeloCarro modelo : ModeloCarro.values()) {
+				System.out.println(modelo.toString());
+			}
+			carro.put("Modelo", ModeloCarro.values()[sc.nextInt()].toString());
+			
+			/*System.out.println("Insira o tipo de carro:");
 			nc.setTipo(sc.nextLine());
 			System.out.println("Insira a cor do carro:");
 			nc.setCor(sc.nextLine());
@@ -40,13 +60,13 @@ public class Loja implements Serializable{
 			System.out.println("Insira o preço:");
 			nc.setPreco(sc.nextFloat());
 			System.out.println("Insira o motorização:");
-			nc.setMotorizacao(sc.nextFloat());
+			nc.setMotorizacao(sc.nextFloat());*/
 			
 		}catch(InputMismatchException e){
 			System.out.println("ERRO- Tipo incorreto: "+e);
 			System.exit(1);
 		}
-		estoqueCarros.add(nc);
+		//estoqueCarros.add(nc);
 		System.out.println("Carro adicionado.");
 		System.out.println("---------------------------");
 	}

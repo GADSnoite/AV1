@@ -3,6 +3,8 @@ package av1;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
+import enums.OpcoesMenu;
+
 public class Main {
 
 	@SuppressWarnings("resource")
@@ -13,15 +15,9 @@ public class Main {
 		do{
 			
 			System.out.println("Escolha uma opção:");
-			System.out.println("[0]- FIM");
-			System.out.println("[1]- adicionar Carro");
-			System.out.println("[2]- adicionar Moto");
-			System.out.println("[3]- pesquisar Carro por chassi");
-			System.out.println("[4]- perquisar Moto por chassi");
-			System.out.println("[5]- listar estoque de Carros");
-			System.out.println("[6]- listar estoque de Motos");
-			System.out.println("[7]- salvar estoque em arquivo");
-			System.out.println("[8]- recuperar estoque de arquivo");
+			for (OpcoesMenu op : OpcoesMenu.values()) {
+				System.out.println(op.toString());
+			}
 			
 			try {
 				opcao = sc.nextInt();
